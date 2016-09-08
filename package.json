@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Pretotype to track hapiness in office",
   "main": "hpn.js",
+  "engines": {
+      "node": "5.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node hpn.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +19,7 @@
     "pretotype"
   ],
   "author": "wdonet@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wdonet/hpn/issues"
   },
