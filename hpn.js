@@ -5,7 +5,7 @@ hpn.get('/', function (req, res) {
     res.send("Hi")
 });
 
-var port = 8080;
+var port = 80;
 hpn.listen(port, function() {
     console.log('Listening on port ' + port);
 });
