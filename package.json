@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Pretotype to track hapiness in office",
   "main": "hpn.js",
-  "engines": {
-      "node": "5.0.0"
-  },
   "scripts": {
     "start": "node hpn.js"
   },
