@@ -1,6 +1,7 @@
 var express = require('express');
 var qs = require('qs');
 var http = require('http');
+var request = require('superagent');
 var hpn = express();
 hpn.set('host', 'https://hppnssomtr.herokuapp.com');
 hpn.set('version', 'v1');
@@ -16,25 +17,20 @@ function url(uri) {
     return hpn.get('host') + '/' + hpn.get('version') + uri;
 }
 
-function buildOptions(uri, data) {
-    var host = hpn.get('host');
-    var path = '/' + hpn.get('version') + uri;
-    var token = 'Token ' + hpn.get('token');
-    return {
-        host: host,
-        path: path,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': Buffer.byteLength(data),
-            'Authorization': token
-        }
-    };
-}
-
-function buildMood(mood, msg) {
-    return qs.stringify({ mood : mood, comment : msg,
-         user: 'oherrera@nearsoft.com'});
+function postMood(mood, msg) {
+    console.log("\nRequest [" + mood + "] - '" + msg + "'");
+    request.post(url('/users/me/moods'))
+        .send({ mood : mood, comment : msg, user: 'oherrera@nearsoft.com'})
+        .set('Accept', 'application/json')
+        .set('Authorization', 'Token ' + hpn.get('token'))
+        .end(function(err, res){
+            if (err) {
+                console.log("\n-Error: " + JSON.stringify(err));
+            }
+            else {
+                console.log("\n-Response: " + JSON.stringify(res));
+            }
+        });;
 }
 
 // routes
@@ -43,24 +39,27 @@ hpn.get('/', function (req, res) {
 });
 
 hpn.post('/im/happy', function(req, res) {
-    console.log("RQ to " + url('/users/me/moods'));
-    var mood = buildMood('good', 'I am feeling happy');
-    console.log("With Mood: " + mood);
-    var options = buildOptions('/users/me/moods', mood);
-    console.log("And Options: " + JSON.stringify(options));
-    var postReq = http.request(options, function(rs) {
-        console.log('RS STATUS: ' + rs.statusCode);
-        console.log('RS HEADERS: ' + JSON.stringify(rs.headers));
-        rs.setEncoding('utf8');
-        rs.on('data', function(chunk) {
-            console.log('RS BODY: ' + chunk);
-        });
-    });
-    postReq.on('error', function(e) {
-        console.log('ERROR: ' + e.message);
-    });
-    postReq.write(mood);
-    postReq.end();
+    postMood('good', 'I am feeling happy ᕕ( ᐛ )ᕗ');
+});
+
+hpn.post('/im/sad', function(req, res) {
+    postMood('bad', 'I am so sad :(');
+});
+
+hpn.post('/im/angry', function(req, res) {
+    postMood('bad', 'I am too angry ლ(ಠ益ಠ)ლ ');
+});
+
+hpn.post('/im/inlove', function(req, res) {
+    postMood('good', 'I am in ♥');
+});
+
+hpn.post('/im/cool', function(req, res) {
+    postMood('good', 'This is so cool !⊂(◉‿◉)');
+});
+
+hpn.post('/im/sleepy', function(req, res) {
+    postMood('neutral', 'I am feeling sleepy');
 });
 
 // listening on
