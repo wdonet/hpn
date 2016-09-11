@@ -39,7 +39,12 @@ function postBitLy(req, code) {
     if (!req.headers.host.startsWith('localhost')) {
         var url = 'http://bit.ly/' + code;
         request.get(url).end(function(err, res) {
-            console.log('BITLY hit : ' + url);
+            if (err) {
+                console.log('ERROR on bitly : ' + JSON.stringify(err));
+            }
+            else if (res) {
+                console.log('BITLY hit : ' + url + ' with response : ' + res);
+            }
         });
     }
 }
