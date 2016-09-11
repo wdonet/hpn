@@ -57,29 +57,29 @@
 
             $(document).ready(function(){
                 var isLocal = document.location.href.startsWith('http://localhost');
-                // var host = isLocal ? '' : 'http://hpn-pretotype.herokuapp.com/im/happy';
+                // var host = isLocal ? '' : 'http://hpn-pretotype.herokuapp.com';
                 $('.happy').on('click', function() {
                     $.post(isLocal ? '/im/happy' : 'http://bit.ly/2cmPP6x');
                     showLayer();
                 });
                 $('.sad').on('click', function() {
-                    $.post(host + '/im/sad');
+                    $.post(isLocal ? '/im/sad' : 'http://bit.ly/2cfU9l3');
                     showLayer();
                 });
                 $('.angry').on('click', function() {
-                    $.post(host + '/im/angry');
+                    $.post(isLocal ? '/im/angry' : 'http://bit.ly/2cuUjsb');
                     showLayer();
                 });
                 $('.inlove').on('click', function() {
-                    $.post(host + '/im/inlove');
+                    $.post(isLocal ? '/im/inlove' : 'http://bit.ly/2cg8boa');
                     showLayer();
                 });
                 $('.cool').on('click', function() {
-                    $.post('/im/cool');
+                    $.post(isLocal ? '/im/cool' : 'http://bit.ly/2clecOy');
                     showLayer();
                 });
                 $('.sleepy').on('click', function() {
-                    $.post('/im/sleepy');
+                    $.post(isLocal ? '/im/sleepy' : 'http://bit.ly/2c6W4e2');
                     showLayer();
                 });
             });
