@@ -56,30 +56,28 @@
             window.onresize = setLayerPosition;
 
             $(document).ready(function(){
-                var isLocal = document.location.href.startsWith('http://localhost');
-                // var host = isLocal ? '' : 'http://hpn-pretotype.herokuapp.com';
                 $('.happy').on('click', function() {
-                    $.post(isLocal ? '/im/happy' : 'http://bit.ly/2cmPP6x');
+                    $.post('/im/happy');
                     showLayer();
                 });
                 $('.sad').on('click', function() {
-                    $.post(isLocal ? '/im/sad' : 'http://bit.ly/2cfU9l3');
+                    $.post('/im/sad');
                     showLayer();
                 });
                 $('.angry').on('click', function() {
-                    $.post(isLocal ? '/im/angry' : 'http://bit.ly/2cuUjsb');
+                    $.post('/im/angry');
                     showLayer();
                 });
                 $('.inlove').on('click', function() {
-                    $.post(isLocal ? '/im/inlove' : 'http://bit.ly/2cg8boa');
+                    $.post('/im/inlove');
                     showLayer();
                 });
                 $('.cool').on('click', function() {
-                    $.post(isLocal ? '/im/cool' : 'http://bit.ly/2clecOy');
+                    $.post('/im/cool');
                     showLayer();
                 });
                 $('.sleepy').on('click', function() {
-                    $.post(isLocal ? '/im/sleepy' : 'http://bit.ly/2c6W4e2');
+                    $.post('/im/sleepy');
                     showLayer();
                 });
             });
