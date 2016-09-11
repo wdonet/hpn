@@ -38,7 +38,7 @@ function postBitLy(req, code) {
     console.log("HOST => " + req.headers.host);
     if (!req.headers.host.startsWith('localhost')) {
         var url = 'http://bit.ly/' + code;
-        request.get(url).end(function(err, res) {
+        request.post(url).end(function(err, res) {
             if (err) {
                 console.log('ERROR on bitly : ' + JSON.stringify(err));
             }
