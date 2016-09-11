@@ -5,7 +5,8 @@ var request = require('superagent');
 var hpn = express();
 hpn.set('host', 'https://hppnssomtr.herokuapp.com');
 hpn.set('version', 'v1');
-hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkhWIiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJvaGVycmVyYUBuZWFyc29mdC5jb20ifQ.zGztgyqEHsfkv0r00jkJADEoxdErmuJN84y-ZbPgm_A');
+//hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkhWIiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJvaGVycmVyYUBuZWFyc29mdC5jb20ifQ.zGztgyqEHsfkv0r00jkJADEoxdErmuJN84y-ZbPgm_A'); //oherrera
+hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6Inp6IiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJ3ZG9uZXRAbmVhcnNvZnQuY29tIn0.zWUn761lCy6OfpUqzOTdecl8oM5mSBjHpClT0vyVrnQ'); //wdonet
 hpn.set('port', (process.env.PORT || 8080));
 
 hpn.use(express.static(__dirname + '/public'));
@@ -20,7 +21,7 @@ function url(uri) {
 function postMood(mood, msg) {
     console.log("\nRequest [" + mood + "] - '" + msg + "'");
     request.post(url('/users/me/moods'))
-        .send({ mood : mood, comment : msg, user: 'oherrera@nearsoft.com'})
+        .send({ mood : mood, comment : msg, user: 'wdonet@nearsoft.com'})
         .set('Accept', 'application/json')
         .set('Authorization', 'Token ' + hpn.get('token'))
         .end(function(err, res){
