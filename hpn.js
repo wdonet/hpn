@@ -35,9 +35,11 @@ function postMood(mood, msg) {
 }
 
 function postBitLy(req, code) {
+    console.log("HOST => " + req.headers.host);
     if (!req.headers.host.startsWith('localhost')) {
-        request.post('http://bit.ly/' + code).end(function(err, res){
-            console.log('BITLY hit :' + code);
+        var url = 'http://bit.ly/' + code;
+        request.get(url).end(function(err, res) {
+            console.log('BITLY hit : ' + url);
         });
     }
 }
@@ -48,33 +50,32 @@ hpn.get('/', function (req, res) {
 });
 
 hpn.post('/im/happy', function(req, res) {
-    console.log("HOST ++> " + req.headers.host);
-    postMood('good', 'I am feeling happy ᕕ( ᐛ )ᕗ');
+    // postMood('good', 'I am feeling happy ᕕ( ᐛ )ᕗ');
     postBitLy(req, '2cmPP6x');
 });
 
 hpn.post('/im/sad', function(req, res) {
-    postMood('bad', 'I am so sad :(');
+    // postMood('bad', 'I am so sad :(');
     postBitLy(req, '2cfU9l3');
 });
 
 hpn.post('/im/angry', function(req, res) {
-    postMood('bad', 'I am too angry ლ(ಠ益ಠ)ლ ');
+    // postMood('bad', 'I am too angry ლ(ಠ益ಠ)ლ ');
     postBitLy(req, '2cuUjsb');
 });
 
 hpn.post('/im/inlove', function(req, res) {
-    postMood('good', 'I am in ♥');
+    // postMood('good', 'I am in ♥');
     postBitLy(req, '2cg8boa');
 });
 
 hpn.post('/im/cool', function(req, res) {
-    postMood('good', 'This is so cool !⊂(◉‿◉)');
+    // postMood('good', 'This is so cool !⊂(◉‿◉)');
     postBitLy(req, '2clecOy');
 });
 
 hpn.post('/im/sleepy', function(req, res) {
-    postMood('neutral', 'I am feeling sleepy');
+    // postMood('neutral', 'I am feeling sleepy');
     postBitLy(req, '2c6W4e2');
 });
 
