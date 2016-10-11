@@ -21,7 +21,7 @@ function url(uri) {
 function postMood(mood, msg) {
     console.log("\nRequest [" + mood + "] - '" + msg + "'");
     request.post(url('/users/me/moods'))
-        .send({ mood : mood, comment : msg, user: 'wdonet@nearsoft.com'})
+        .send({ mood : mood, comment : '', user: 'wdonet@nearsoft.com'}) //no msg due to not affect analysis of messages
         .set('Accept', 'application/json')
         .set('Authorization', 'Token ' + hpn.get('token'))
         .end(function(err, res){
