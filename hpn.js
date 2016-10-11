@@ -2,10 +2,11 @@ var express = require('express');
 var qs = require('qs');
 var request = require('superagent');
 var hpn = express();
-hpn.set('host', 'https://hppnssomtr.herokuapp.com');
+hpn.set('host', 'https://happinessometer.herokuapp.com');
 hpn.set('version', 'v1');
-//hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkhWIiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJvaGVycmVyYUBuZWFyc29mdC5jb20ifQ.zGztgyqEHsfkv0r00jkJADEoxdErmuJN84y-ZbPgm_A'); //oherrera
-hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6Inp6IiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJ3ZG9uZXRAbmVhcnNvZnQuY29tIn0.zWUn761lCy6OfpUqzOTdecl8oM5mSBjHpClT0vyVrnQ'); //wdonet
+//hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkhWIiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJvaGVycmVyYUBuZWFyc29mdC5jb20ifQ.zGztgyqEHsfkv0r00jkJADEoxdErmuJN84y-ZbPgm_A'); //oherrera QA
+//hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6Inp6IiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJ3ZG9uZXRAbmVhcnNvZnQuY29tIn0.zWUn761lCy6OfpUqzOTdecl8oM5mSBjHpClT0vyVrnQ'); //wdonet QA
+hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkludHJvZHVjZWQiLCJmaXJzdE5hbWUiOiJNYW51YWxseSIsImVtYWlsIjoid2RvbmV0QG5lYXJzb2Z0LmNvbSJ9.-U3F8G7fkAEX0tJKbp5hHVuahjKshEJq9nPaNjRKYts'); // wdonet PROD
 hpn.set('port', (process.env.PORT || 8080));
 
 hpn.use(express.static(__dirname + '/public'));
@@ -79,7 +80,7 @@ hpn.post('/im/cool', function(req, res) {
 });
 
 hpn.post('/im/sleepy', function(req, res) {
-    postMood('neutral', 'I am feeling sleepy');
+    postMood('bad', 'I am feeling sleepy');
     // postBitLy(req, '2c6W4e2');
 });
 
