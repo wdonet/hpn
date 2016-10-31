@@ -18,8 +18,8 @@ function url(uri) {
     return hpn.get('host') + '/' + hpn.get('version') + uri;
 }
 
-function postMood(mood, msg) {
-    console.log("\nRequest [" + mood + "] - '" + msg + "'");
+function postMood(mood) {
+    console.log("\nRequesting Office Mood : " + mood);
     request.post(url('/users/me/moods'))
         .send({ mood : mood, comment : '', user: 'wdonet@nearsoft.com'}) //no msg due to not affect analysis of messages
         .set('Accept', 'application/json')
@@ -34,54 +34,19 @@ function postMood(mood, msg) {
         });;
 }
 
-function postBitLy(req, code) {
-    console.log("HOST => " + req.headers.host);
-    if (!req.headers.host.startsWith('localhost')) {
-        var url = 'http://bit.ly/' + code;
-        request.post(url).end(function(err, res) {
-            if (err) {
-                console.log('ERROR on bitly : ' + JSON.stringify(err));
-            }
-            else if (res) {
-                console.log('BITLY hit : ' + url + ' with response : ' + res);
-            }
-        });
-    }
-}
-
 // routes
 hpn.get('/', function (req, res) {
     res.render('index');
 });
 
-hpn.post('/im/happy', function(req, res) {
-    postMood('good', 'I am feeling happy ᕕ( ᐛ )ᕗ');
-    // postBitLy(req, '2cmPP6x');
+hpn.post('/im/good', function(req, res) {
+    postMood('good');
 });
-
-hpn.post('/im/sad', function(req, res) {
-    postMood('bad', 'I am so sad :(');
-    // postBitLy(req, '2cfU9l3');
+hpn.post('/im/neutral', function(req, res) {
+    postMood('neutral');
 });
-
-hpn.post('/im/angry', function(req, res) {
-    postMood('bad', 'I am too angry ლ(ಠ益ಠ)ლ ');
-    // postBitLy(req, '2cuUjsb');
-});
-
-hpn.post('/im/inlove', function(req, res) {
-    postMood('good', 'I am in ♥');
-    // postBitLy(req, '2cg8boa');
-});
-
-hpn.post('/im/cool', function(req, res) {
-    postMood('good', 'This is so cool !⊂(◉‿◉)');
-    // postBitLy(req, '2clecOy');
-});
-
-hpn.post('/im/sleepy', function(req, res) {
-    postMood('bad', 'I am feeling sleepy');
-    // postBitLy(req, '2c6W4e2');
+hpn.post('/im/bad', function(req, res) {
+    postMood('bad');
 });
 
 // listening on
