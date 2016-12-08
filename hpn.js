@@ -7,7 +7,15 @@ hpn.set('version', 'v1');
 //hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkhWIiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJvaGVycmVyYUBuZWFyc29mdC5jb20ifQ.zGztgyqEHsfkv0r00jkJADEoxdErmuJN84y-ZbPgm_A'); //oherrera QA
 //hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6Inp6IiwiZmlyc3ROYW1lIjoiT3p6IiwiZW1haWwiOiJ3ZG9uZXRAbmVhcnNvZnQuY29tIn0.zWUn761lCy6OfpUqzOTdecl8oM5mSBjHpClT0vyVrnQ'); //wdonet QA
 hpn.set('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkludHJvZHVjZWQiLCJmaXJzdE5hbWUiOiJNYW51YWxseSIsImVtYWlsIjoid2RvbmV0QG5lYXJzb2Z0LmNvbSJ9.-U3F8G7fkAEX0tJKbp5hHVuahjKshEJq9nPaNjRKYts'); // wdonet PROD
-hpn.set('port', (process.env.PORT || 8080));
+hpn.set('port', (process.env.PORT || 3000));
+hpn.set('imgUrls', {
+    good : (process.env.IMG_GOOD_URL || '/img/_good.png'),
+    bad : (process.env.IMG_BAD_URL || '/img/_bad.png'),
+    neutral : (process.env.IMG_NEUTRAL_URL || '/img/_neutral.png')
+});
+console.log('URL 4 good : ' + hpn.get('imgUrls').good);
+console.log('URL 4 bad : ' + hpn.get('imgUrls').bad);
+console.log('URL 4 neutral : ' + hpn.get('imgUrls').neutral);
 
 hpn.use(express.static(__dirname + '/public'));
 hpn.set('views', __dirname + '/views');
@@ -36,7 +44,7 @@ function postMood(mood) {
 
 // routes
 hpn.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {imgUrls: hpn.get('imgUrls')});
 });
 
 hpn.post('/im/good', function(req, res) {
